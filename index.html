@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#004741', greenText: '#00A99D', grayBG: '#F0F0F0', blackText: "#00100B",
+          },
+          fontFamily: {
+            // 'sans': ['ui-sans-serif', 'system-ui', ...],
+            // 'serif': ['ui-serif', 'Georgia', ...],
+            // 'mono': ['ui-monospace', 'SFMono-Regular', ...],
+            rubik: ['"Rubik", sans-serif' ],
+            roboto: ['"Roboto", sans-serif'],
+            // jeva: ['"Playwrite HR Lijeva", cursive'],
+        },
+        screens: {
+          'sm': {'min': '350px', 'max': '550px'},
+          // => @media (min-width: 640px and max-width: 767px) { ... }
+
+          'md': {'min': '551px', 'max': '821px'},
+          // => @media (min-width: 768px and max-width: 1023px) { ... }
+
+          'lg': {'min': '822px', 'max': '1279px'},
+          // => @media (min-width: 1024px and max-width: 1279px) { ... }
+
+          'xl': {'min': '1280px', 'max': '1535px'},
+          // => @media (min-width: 1280px and max-width: 1535px) { ... }
+
+          '2xl': {'min': '1536px'},
+          // => @media (min-width: 1536px) { ... }
+        },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-900 flex items-center justify-center h-screen">
+  <div class="bg-gray-700 p-12 rounded-lg shadow-lg max-w-md text-center">
+    <p class="text-[24px]">Generate a <span class="text-orange-400">random</span> password.</p>
+    <p class="text-white">Never use an insecure password again !</p>
+    <button id="js-generateBtn" class="mt-6 rounded-md bg-orange-400 hover:bg-orange-500 text-white py-2 px-4">
+      Generate passwords 
+    </button>
+    <hr class="w-96 mt-6 border-gray-400">
+    <div class="mt-6 flex space-x-5 justify-center">
+      <div id="password1" class="bg-gray-800 text-orange-400 py-2 px-4 rounded-md"></div>
+      <div id="password2" class="bg-gray-800 text-orange-400 py-2 px-4 rounded-md"></div>
+    </div>
+  </div>
+
+
+
+
+
+  <script>
+    const characters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','o','p','q','r','s','t','u','v','w','x','y','z',1,2,3,4,5,6,7,8,9,0,'!','#','$','%','&','_','-',]
+
+    let passwordLength = 12;
+
+    function getRandomCharacter () {
+     let randomChar = Math.floor( Math.random() * characters.length);  
+     return characters[randomChar];   
+    }
+
+    function generateRandomPassword() {
+      let randomPassword = '';
+      for(let i=0; i < passwordLength; i++) {
+        randomPassword += getRandomCharacter();
+      }
+      return randomPassword; 
+    }
+    
+    document.getElementById('js-generateBtn').addEventListener('click', () => {
+      const password1 = generateRandomPassword();
+      const password2 = generateRandomPassword();
+
+      document.getElementById('password1').textContent = password1;
+      document.getElementById('password2').textContent = password2;
+    })
+    
+  </script>
+</body>
+</html>
